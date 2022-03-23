@@ -194,22 +194,10 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="root有风险，请提取做好数据备份，预备救砖方法"><a href="#root有风险，请提取做好数据备份，预备救砖方法" class="headerlink" title="root有风险，请提取做好数据备份，预备救砖方法"></a>root有风险，请提取做好数据备份，预备救砖方法</h2><h2 id="原由"><a href="#原由" class="headerlink" title="原由"></a>原由</h2><p>手机系统升级掉了root，为了重新root，需要boot.img 和 vbmeta.img ，但由于刚升级，并没有人提取后发出来，在Q群里求助无果后，打算自己提取。</p>
-<h2 id="设备：Realme-Q3-UI-2-0-A20"><a href="#设备：Realme-Q3-UI-2-0-A20" class="headerlink" title="设备：Realme Q3 UI 2.0 A20"></a>设备：Realme Q3 UI 2.0 A20</h2><p>设备不同，安卓系统文件结构可能不同，请根据不同情况灵活变通，保持谨慎</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol>
-<li>从全量包中提取</li>
-<li>从第三方rec中提取（TWRP&#x2F;OrangeBox）</li>
-<li>(已用root) Terminal &#x2F;ADB &#x2F;MT管理器提取</li>
-</ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="全量包中提取"><a href="#全量包中提取" class="headerlink" title="全量包中提取"></a>全量包中提取</h3><p>因为系统OTA升级并没有提供全量包，官网也没给包，所以并没有尝试这个方法。<br>如果你有全量包的话，百度上有许多提取教程</p>
-<h3 id="第三方rec中提取"><a href="#第三方rec中提取" class="headerlink" title="第三方rec中提取"></a>第三方rec中提取</h3><p>以TWRP为例，TWRP刷入教程上百度<br>进入TWRP，高级设置&#x3D;&gt;文件管理-&gt;&#x2F;dev&#x2F;block&#x2F;by-name&#x2F; (具体路径不确定，但&#x2F;dev&#x2F;block应该一样，然后找by-name,目录下有boot，recovery，vbmeta等文件，实际它们是软链接，记住这个路径)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/block/**/by-name/boot of=/sdcard/boot.img		//if的路径即为刚才找的路径,sdcard指向的是内部存储</span><br><span class="line">dd if=/dev/block/**/by-name/vbmeta of=/sdcard/vbmeta.img	//if的路径即为刚才找的路径,sdcard指向的是内部存储</span><br></pre></td></tr></table></figure>
-<p>之后便可以在内部存储中根目录中找到对应的文件。<br>之后步骤不是重点，简略带过：<br>进Magisk Manger修补镜像，传输到电脑，手机进fastboot模式，电脑adb连接手机（连不上需安装驱动，手机开USB调试，具体步骤百度）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot boot_patched.img		//boot_patched.img为已修补的boot镜像</span><br><span class="line">fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</span><br></pre></td></tr></table></figure>
-<p>重启<br>备注：恢复原厂boot和vbmeta命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot boot.img		</span><br><span class="line">fastboot flash vbmeta vbmeta.img		//注意，vbmeta.img与上面的vbmeta.img是同一个文件，只是上面加了关闭vb校验的参数</span><br></pre></td></tr></table></figure>
-<h3 id="（已root）Terminal-和-ADB提取"><a href="#（已root）Terminal-和-ADB提取" class="headerlink" title="（已root）Terminal 和 ADB提取"></a>（已root）Terminal 和 ADB提取</h3><p>此方法与原由相矛盾，如果你已获得root，想提取boot和vbmeta，也可直接用MT管理器授予root权限找到文件直接提取</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb shell			//adb提取才需要这条命令</span><br><span class="line">su</span><br><span class="line">dd if=/dev/block/**/by-name/boot of=/sdcard/boot.img		</span><br><span class="line">dd if=/dev/block/**/by-name/vbmeta of=/sdcard/vbmeta.img</span><br></pre></td></tr></table></figure>
+    <h2 id="原由"><a href="#原由" class="headerlink" title="原由"></a>原由</h2><p>手机系统升级掉了root，为了重新root，需要boot.img 和 vbmeta.img ，但由于刚升级，并没有人提取后发出来，在Q群里求助无果后，打算自己提取。</p>
+    
+    <a class="article-more-a" href="/2022/03/23/extract-boot-img/#more">more >></a>
+    
     
 
     
@@ -298,21 +286,10 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="为什么创建这个博客"><a href="#为什么创建这个博客" class="headerlink" title="为什么创建这个博客"></a>为什么创建这个博客</h2><ol>
-<li>稚晖君建议多做笔记，并与他人分享，进行知识的输出</li>
-<li>希望能与志同道合的人一起探讨技术相关的问题</li>
-<li>通过文章，帮助他人解决问题</li>
-</ol>
-<p>我会在这个博客里面更新我的学习笔记，一般都不会一次性发完整的文章，而是边学边发，所以难免会有纰漏，可以加我QQ: 2825406930 与我联系。之后会开通评论区功能，就可以在文章下面讨论。</p>
-<h2 id="怎么搭建这样的博客"><a href="#怎么搭建这样的博客" class="headerlink" title="怎么搭建这样的博客"></a>怎么搭建这样的博客</h2><p>此博客用的是hexo框架，因为条件限制，暂时先部署在Github，之后再放在自己的服务器上，所以访问速度会有些慢，甚至打不开，望谅解。之后可能会发一篇搭建hexo的教程（先画块饼）。<br>这个博客也刚刚创建，有些功能也还没有进行完善，有时间会补上。</p>
-<h2 id="这个博客会发什么内容"><a href="#这个博客会发什么内容" class="headerlink" title="这个博客会发什么内容"></a>这个博客会发什么内容</h2><ol>
-<li>Linux</li>
-<li>Android</li>
-<li>编程</li>
-<li>。。。</li>
-</ol>
-<p>都会是与信息技术相关的内容，但我并没有具体的学习方向，可能哪天心血来潮就又多了一个栏目。。。<br>之前并没有写文章的习惯，所以文笔很差，逻辑可能有些混乱，我会尝试去改进，如果你有什么好的建议，可以与我联系，万分感谢！</p>
-
+    <h2 id="为什么创建这个博客"><a href="#为什么创建这个博客" class="headerlink" title="为什么创建这个博客"></a>为什么创建这个博客</h2>
+    
+    <a class="article-more-a" href="/2022/03/23/hello-world/#more">more >></a>
+    
     
 
     
